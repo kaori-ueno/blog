@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Encrypted password</th>
       <th>Created at</th>
       <th>Updated at</th>
       <th colspan="3"></th>
@@ -17,7 +16,6 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.encrypted_password %></td>
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
         <td><%= link_to 'Show', user %></td>
