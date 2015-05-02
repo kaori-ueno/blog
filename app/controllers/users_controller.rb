@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authorize
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i(show edit update destroy)
 
   # GET /users
   # GET /users.json
