@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authorize
   before_action :set_user, only: %i(show edit update destroy)
+  before_action :validate_user!, only: %i(edit update destroy)
 
   # GET /users
   # GET /users.json
@@ -66,6 +67,12 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def validate_user!
+      unless current_user && @user.id === current_user.id
+        redirect_to users_url, notice: "You can operate only your account."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
