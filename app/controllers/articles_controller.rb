@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-  before_filter :authorize, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :validate_user!, only: [:edit, :update, :destroy]
+  before_filter :authorize, only: %i(new edit create update destroy)
+  before_action :set_article, only: %i(show edit update destroy)
+  before_action :validate_user!, only: %i(edit update destroy)
 
   # GET /articles
   # GET /articles.json
