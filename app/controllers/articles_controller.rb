@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
+  before_filter :authorize, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :validate_user!, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -67,8 +69,15 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
+    def validate_user!
+      unless current_user && @article.user_id === current_user.id
+        redirect_to articles_url, notice: "You can NOT operate the article."
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
+      params[:article][:user_id] = current_user.id
       params.require(:article).permit(:title, :body, :user_id)
     end
 end
