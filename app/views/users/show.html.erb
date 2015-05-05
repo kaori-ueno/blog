@@ -15,5 +15,14 @@
   <%= @user.updated_at %>
 </p>
 
+<p>
+  <strong>Blogs:</strong>
+  <% if @user.blogs %>
+    <% @user.blogs.each do |blog| %>
+      <%= link_to "#{blog.name}", blog %>
+    <% end %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
