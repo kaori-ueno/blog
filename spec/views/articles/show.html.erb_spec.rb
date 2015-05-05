@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "articles/show", :type => :view do
   before(:each) do
-    @article = assign(:article, Article.create!(
-      :title => "Title",
-      :body => "Body",
-      :user_id => 1
-    ))
+    @article = assign(:article, FactoryGirl.create(:article, blog_id: 1))
   end
 
   it "renders attributes in <p>" do

@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
-  before_filter :authorize, only: %i(new edit create update destroy)
+  before_action :authorize, only: %i(new edit create update destroy)
   before_action :set_article, only: %i(show edit update destroy)
-  before_action :validate_user!, only: %i(edit update destroy)
+  before_action :validate_user, only: %i(edit update destroy)
 
   # GET /articles
   # GET /articles.json
@@ -26,7 +26,9 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = Article.new(article_params_for_create)
+    # TODO ここキモいからエラーハンドリングでどうにかする
+    return if validate_user
 
     respond_to do |format|
       if @article.save
@@ -43,7 +45,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
-      if @article.update(article_params)
+      if @article.update(article_params_for_update)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
@@ -69,15 +71,16 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-    def validate_user!
-      unless current_user && @article.user_id === current_user.id
-        redirect_to articles_url, notice: "You can NOT operate the article."
-      end
+    def validate_user
+      redirect_to articles_url, notice: "The article is not yours." unless @article.is_owner? current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params[:article][:user_id] = current_user.id
-      params.require(:article).permit(:title, :body, :user_id)
+    def article_params_for_create
+      params.require(:article).permit(:title, :body, :blog_id)
+    end
+
+    def article_params_for_update
+      params.require(:article).permit(:title, :body)
     end
 end

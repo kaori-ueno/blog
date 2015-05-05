@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :article do
-    title "body"
+    title "Title"
     body "Body"
   end
 end

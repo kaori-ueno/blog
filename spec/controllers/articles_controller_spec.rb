@@ -2,10 +2,11 @@ require 'rails_helper'
 
 describe ArticlesController, :type => :controller do
   let!(:article) { Article.create! valid_attributes }
+  let(:blog) { FactoryGirl.create :blog, user_id: user.id }
   let(:user) { FactoryGirl.create :user }
   let(:current_user) { user }
-  let(:valid_attributes) { { title: "Title", body: "Body", user_id: user.id } }
-  let(:invalid_attributes) { { title: "Title", body: "" } }
+  let(:valid_attributes) { { title: "Title", body: "Body", blog_id: blog.id } }
+  let(:invalid_attributes) { { title: "Title", body: "", blog_id: blog.id } }
 
   before do
     allow_any_instance_of(SessionsHelper).to receive(:current_user).and_return(current_user)
@@ -125,7 +126,9 @@ describe ArticlesController, :type => :controller do
         it "updates the requested article" do
           put :update, {:id => article.to_param, :article => new_attributes}
           article.reload
-          skip("Add assertions for updated state")
+          %i(title body).each do |key|
+            expect(article.send(key)).to eq new_attributes[key]
+          end
         end
 
         it "assigns the requested article as @article" do
