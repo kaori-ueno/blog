@@ -17,10 +17,12 @@
 
 <p>
   <strong>Blogs:</strong>
-  <% if @user.blogs %>
+  <% if @user.blogs.present? %>
     <% @user.blogs.each do |blog| %>
       <%= link_to "#{blog.name}", blog %>
     <% end %>
+  <% else %>
+    no data
   <% end %>
 </p>
 

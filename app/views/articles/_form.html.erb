@@ -19,10 +19,14 @@
     <%= f.label :body %><br>
     <%= f.text_field :body %>
   </div>
-  <div class="field">
-    <%= f.label :blog_id %><br>
-    <%= f.number_field :blog_id %>
-  </div>
+  <% if @blog_id %>
+    <%= f.number_field :blog_id, value: @blog_id, type: "hidden" %>
+  <% else %>
+    <div class="field">
+      <%= f.label :blog_id %><br>
+      <%= f.number_field :blog_id %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
