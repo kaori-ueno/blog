@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "articles/show", :type => :view do
   before(:each) do
-    @article = assign(:article, FactoryGirl.create(:article, blog_id: 1))
+    blog = FactoryGirl.create :blog, id: 1
+    @article = assign :article, FactoryGirl.create(:article, blog_id: blog.id)
   end
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Title/)
-    expect(rendered).to match(/Body/)
-    expect(rendered).to match(/1/)
+    expect(rendered).to match(/#{@article.title}/)
+    expect(rendered).to match(/#{@article.body}/)
+    expect(rendered).to match(/#{@article.blog_id}/)
   end
 end
