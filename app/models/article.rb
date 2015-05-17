@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
   validates :blog_id, presence: true
 
   belongs_to :blog
+  has_many :comments
 
   def is_owner?(user)
     return false unless user && blog
