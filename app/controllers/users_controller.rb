@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, except: %i(index show new create)
   before_action :set_user, only: %i(show edit update destroy)
   before_action :validate_user!, only: %i(edit update destroy)
 
