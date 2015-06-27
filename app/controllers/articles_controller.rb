@@ -16,8 +16,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
-    @blog_id = params[:blog_id]
+    @article = Article.new(blog_id: params[:blog_id].to_i)
   end
 
   # GET /articles/1/edit
