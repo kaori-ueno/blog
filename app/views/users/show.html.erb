@@ -1,30 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<h3><%=t :blog_list_of, user: @user.name %></h3>
 
-<p>
-  <strong>Created at:</strong>
-  <%= @user.created_at %>
-</p>
-
-<p>
-  <strong>Updated at:</strong>
-  <%= @user.updated_at %>
-</p>
-
-<p>
-  <strong>Blogs:</strong>
-  <% if @user.blogs.present? %>
-    <% @user.blogs.each do |blog| %>
-      <%= link_to "#{blog.name}", blog %>
+<table class="table">
+  <thead>
+    <tr>
+      <th><%=t :blog %></th>
+      <th><%=t :updated_date %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @user.blogs.present? %>
+      <% @user.blogs.each do |blog| %>
+        <tr>
+          <td><%= link_to blog.name, blog %></td>
+          <td><%= format_ja_datetime blog.updated_at %></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="2"></td>
+      </tr>
     <% end %>
-  <% else %>
-    no data
-  <% end %>
-</p>
+  </tbody>
+</table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to t(:edit_object, obj: t(:user)), edit_user_path(@user) %> |
+<%= link_to t(:back), users_path %>

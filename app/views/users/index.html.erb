@@ -1,14 +1,13 @@
 <p id="notice"><%= notice %></p>
 <p id="notice"><%= @notice %></p>
 
-<h1>Listing Users</h1>
+<h1><%=t :user_list %></h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th><%=t :name %></th>
+      <th><%=t :registration_date %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,16 +16,11 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.created_at %></td>
-        <td><%= user.updated_at %></td>
+        <td><%= format_ja_date user.created_at %></td>
         <td><%= link_to 'Show', user %></td>
-        <td><% if current_user.id == user.id %><%= link_to 'Edit', edit_user_path(user) %><% end %></td>
-        <td><% if current_user.id == user.id %><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+        <td><% if current_user && current_user.id == user.id %><%= link_to 'Edit', edit_user_path(user) %><% end %></td>
+        <td><% if current_user && current_user.id == user.id %><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'Logout', signout_path, method: :delete %></td>
