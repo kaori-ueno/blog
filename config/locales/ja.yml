@@ -20,7 +20,43 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ja:
+  user: "ユーザ"
   user_list: "ユーザ一覧"
   name: "名前"
-  create: "名前"
+  blog_list_of: "%{user}のブログ一覧"
+  blog: "ブログ"
+  article: "記事"
+  comment: "コメント"
+  title: "タイトル"
+  body: "本文"
+  no_object: "%{obj}がありません"
+  create_object: "%{obj}投稿"
+  submit: "送信"
+  edit_object: "%{obj}編集"
+  object_list: "%{obj}一覧"
+  back: "戻る"
+  login: "ログイン"
+  sign_up?: "登録はこちら"
+  sign_up: "ユーザ登録"
+  edit_account: "登録情報変更"
+  account: "アカウント"
+  password: "パスワード"
+  password_confirmation: "パスワード(確認用)"
+# 日付
   registration_date: "登録日"
+  updated_date: "更新日"
+  models:
+    user:
+      attributes:
+        password_confirmation: "パスワード(確認用)"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: "名前を入力してください"
+            password:
+              blank: "パスワードを入力してください"
+            password_confirmation:
+              confirmation: "確認用パスワードが異なります"
