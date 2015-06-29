@@ -28,7 +28,7 @@
   <hr />
 <% end %>
 <% if @blog.is_owner? current_user %>
-  <%= link_to t(:create_object, obj: t(:article)), new_article_path(blog_id: @blog.id) %> |
+  <%= link_to t(:write_object, obj: t(:article)), new_article_path(blog_id: @blog.id) %> |
   <%= link_to t(:edit_object, obj: t(:blog)), edit_blog_path(@blog)  %> |
 <% end %>
 <%= link_to t(:back), @blog.user %>

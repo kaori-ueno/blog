@@ -41,6 +41,6 @@
   <% end %>
 <% end %>
 
-<%= link_to t(:create_object, obj: t(:comment)), new_comment_path(article_id: @article.id) %> |
+<%= link_to t(:write_object, obj: t(:comment)), new_comment_path(article_id: @article.id) %> |
 <%= link_to t(:edit_object, obj: t(:article)), edit_article_path(@article) %> |
 <%= link_to t(:back), @article.blog %>

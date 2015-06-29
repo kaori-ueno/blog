@@ -25,5 +25,8 @@
   </tbody>
 </table>
 
-<%= link_to t(:edit_object, obj: t(:user)), edit_user_path(@user) %> |
+<% if current_user && current_user.try(:id) == @user.id %>
+  <%= link_to t(:edit_object, obj: t(:user)), edit_user_path(@user) %> |
+  <%= link_to t(:create_blog), new_blog_path %> |
+<% end %>
 <%= link_to t(:back), users_path %>
