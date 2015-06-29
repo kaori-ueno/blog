@@ -31,13 +31,6 @@ describe BlogsController, :type => :controller do
     end
   end
 
-  describe "GET index" do
-    it "assigns all blogs as @blogs" do
-      get :index, {}
-      expect(assigns(:blogs)).to eq([blog])
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested blog as @blog" do
       get :show, {:id => blog.to_param}

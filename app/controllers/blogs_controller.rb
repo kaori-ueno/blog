@@ -3,12 +3,6 @@ class BlogsController < ApplicationController
   before_action :authorize, only: %i(new edit create update destroy)
   before_action :validate_user, only: %i(edit update destroy)
 
-  # GET /blogs
-  # GET /blogs.json
-  def index
-    @blogs = Blog.all
-  end
-
   # GET /blogs/1
   # GET /blogs/1.json
   def show
