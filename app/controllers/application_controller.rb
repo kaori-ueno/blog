@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def authorize
-    redirect_to controller: "sessions", action: "new" unless current_user
+    unless current_user
+      flash[:previous_url] = request.fullpath
+      redirect_to controller: "sessions", action: "new"
+    end
   end
 end

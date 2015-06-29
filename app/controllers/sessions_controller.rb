@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @user.authenticate params[:user][:password]
         sign_in @user
-        format.html { redirect_to users_url }
+        format.html { redirect_to (flash[:previous_url] || users_url) }
       else
         format.html { redirect_to users_url }
       end
