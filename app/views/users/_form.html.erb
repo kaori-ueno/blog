@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label t(:name) %><br>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password, type: "password" %>
+    <%= f.label t(:password) %><br>
+    <%= f.text_field :password, type: "password", class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br>
-    <%= f.text_field :password_confirmation, type: "password" %>
+    <%= f.label t(:password_confirmation) %><br>
+    <%= f.text_field :password_confirmation, type: "password", class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:submit), class: "btn btn-primary" %>
   </div>
 <% end %>
