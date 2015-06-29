@@ -32,13 +32,6 @@ describe ArticlesController, :type => :controller do
     end
   end
 
-  describe "GET index" do
-    it "assigns all articles as @articles" do
-      get :index, {}
-      expect(assigns(:articles)).to eq [article]
-    end
-  end
-
   describe "GET show" do
     it "assigns the requested article as @article" do
       get :show, {:id => article.to_param}
