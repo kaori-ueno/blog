@@ -31,20 +31,6 @@ describe CommentsController, type: :controller do
     end
   end
 
-  describe "GET index" do
-    it "assigns all comments as @comments" do
-      get :index, {}
-      expect(assigns(:comments)).to eq([comment])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested comment as @comment" do
-      get :show, id: comment.to_param
-      expect(assigns(:comment)).to eq(comment)
-    end
-  end
-
   describe "GET new" do
     let(:params) { { article_id: article.id } }
 
