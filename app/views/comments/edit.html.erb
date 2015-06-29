@@ -1,6 +1,5 @@
-<h1>Editing Comment</h1>
+<h3><%=t :edit_object, obj: t(:comment) %></h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', @comment.article %>
+<%= link_to t(:back), @comment.article %>
