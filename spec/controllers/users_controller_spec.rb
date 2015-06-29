@@ -46,8 +46,15 @@ describe UsersController, type: :controller do
   end
 
   describe "POST create" do
+    let(:current_user) { nil }
+
     it "create user" do
       expect { post :create, { user: valid_attributes } }.to change(User, :count).by(1)
+    end
+
+    it "sign in" do
+      post :create, { user: valid_attributes }
+      expect(request.session[:user_id]).to be_present
     end
   end
 
