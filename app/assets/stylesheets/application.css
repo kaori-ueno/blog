@@ -17,3 +17,19 @@
 .main-container {
   padding-top: 50px;
 }
+
+.section {
+  padding: 10px;
+  background-color: black;
+  color: white;
+}
+.section a:link { color: white; }
+.section a:visited { color: white; }
+.section a:hover { color: white; }
+.section a:active { color: white; }
+
+.body {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: whitesmoke;
+}

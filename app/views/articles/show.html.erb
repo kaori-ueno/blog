@@ -1,15 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <h3><%= @article.blog.name %></h3>
-<hr />
 <div class="row">
-  <div class="col-sm-12">
-    <h4><%= link_to "#{@article.title}", @article %></h4>
-    <div class="row">
-      <div class="col-sm-12">
-        <div style="float:right"><small><%= format_ja_datetime @article.created_at %></small></div>
-      </div>
-    </div>
+  <div class="col-sm-12 body">
+    <small><%= link_to format_date(@article.created_at), edit_article_path(@article) %></small>
+    <h4 class="section"><%= "#{@article.title}" %></h4>
     <div class="row">
       <div class="col-sm-12">
         <%= format_text @article.body %>
@@ -17,17 +12,15 @@
     </div>
   </div>
 </div>
-<hr />
-<h5><%=t :object_list, obj: t(:comment) %></h5>
-<hr />
+<br>
 <% if @article.comments.present? %>
   <% @article.comments.each do |comment| %>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 body">
         <div class="row">
           <div class="col-sm-12">
             <div style="float:left"><b><%= comment.owner.name %></b></div>
-            <div style="float:right"><small><%= format_ja_datetime comment.created_at %></small></div>
+            <div style="float:right"><small><%= format_datetime comment.created_at %></small></div>
           </div>
         </div>
         <div class="row">
@@ -37,10 +30,17 @@
         </div>
       </div>
     </div>
-    <hr />
+    <br>
   <% end %>
 <% end %>
-
-<%= link_to t(:write_object, obj: t(:comment)), new_comment_path(article_id: @article.id) %> |
-<%= link_to t(:edit_object, obj: t(:article)), edit_article_path(@article) %> |
-<%= link_to t(:back), @article.blog %>
+<% if current_user %>
+  <%= form_for(@comment) do |f| %>
+    <div class="field">
+      <%= f.text_area :body, size: "x3", class: "form-control",  placeholder: t(:let_us_do, do: t(:write_object, obj: t(:comment))) %>
+    </div>
+    <%= f.number_field :article_id, value: @comment.article_id, type: "hidden" %>
+    <div class="actions" style="float:right">
+      <%= f.submit t(:write_object, obj: t(:comment)), class: "btn btn-default btn-xs" %>
+    </div>
+  <% end %>
+<% end %>

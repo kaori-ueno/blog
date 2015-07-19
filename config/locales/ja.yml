@@ -32,6 +32,7 @@ ja:
   no_object: "%{obj}がありません"
   write_object: "%{obj}投稿"
   create_object: "%{obj}作成"
+  let_us_do: "%{do}しよう"
   submit: "送信"
   edit_object: "%{obj}編集"
   object_list: "%{obj}一覧"

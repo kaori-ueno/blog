@@ -1,15 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <h3><%= @blog.name %></h3>
-<hr />
 <% if @blog.articles.present? %>
   <% @blog.articles.each do |article| %>
     <div class="row">
-      <div class="col-sm-12">
-        <h4><%= link_to "#{article.title}", article %></h4>
-        <div class="row">
-          <div style="float:right"><small><%= format_ja_datetime article.created_at %></small></div>
-        </div>
+      <div class="col-sm-12 body">
+        <small><%= format_date article.created_at %></small>
+        <h4 class="section"><%= link_to article.title, article %></h4>
         <div class="row">
           <div class="col-sm-12">
             <%= format_text article.body %>
@@ -17,7 +14,7 @@
         </div>
       </div>
     </div>
-    <hr />
+    <br>
   <% end %>
 <% else %>
   <div class="row">
@@ -25,7 +22,7 @@
       <%=t :no_object, obj: t(:article) %>
     </div>
   </div>
-  <hr />
+  <br>
 <% end %>
 <% if @blog.is_owner? current_user %>
   <%= link_to t(:write_object, obj: t(:article)), new_article_path(blog_id: @blog.id) %> |
